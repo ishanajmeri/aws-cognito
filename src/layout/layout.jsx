@@ -1,21 +1,16 @@
 import React from 'react';
 import { Layout } from 'antd';
-// import Navbar from './navbar/navbar';
-// import Footer from './footer/footer';
+import Navbar from './navbar/navbar';
 
 const MainLayout = (props) => {
   return (
     <div>
       <Layout>
-        {/* <Navbar
-          path={props.children.props.match.path}
-          name={props.children.type.name}
-        /> */}
+        <Navbar />
         <main>
           {/* {childern} */}
           {props.children}
         </main>
-        {/* <Footer /> */}
       </Layout>
     </div>
   );
