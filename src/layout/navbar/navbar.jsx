@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Row, Col, Layout, Button } from 'antd';
 
 class Navbar extends Component {
@@ -10,17 +10,23 @@ class Navbar extends Component {
   };
   render() {
     return (
-      <Layout.Header style={{ backgroundColor: 'white' }}>
+      <Layout.Header>
         <Row>
           <Col span={19}>
-            <img src="favicon.ico" alt="" style={{ height: '30%' }} />
+            <NavLink to="/">
+              <img src="favicon.ico" alt="" style={{ height: '30%' }} />
+            </NavLink>
             <Button type="link">
               <NavLink to="/">Home</NavLink>
             </Button>
           </Col>
           <Col span={5}>
-            <Button type="link">Register</Button>
-            <Button type="link">Login</Button>
+            <Button type="primary">
+              <Link to="/register">Register</Link>
+            </Button>
+            <Button type="link">
+              <Link to="/login">Login</Link>
+            </Button>
           </Col>
         </Row>
       </Layout.Header>
