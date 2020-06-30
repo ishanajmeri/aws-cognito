@@ -70,7 +70,7 @@ class Login extends Component {
               />
             </Form.Item>
             <Form.Item>
-              <Link style={{ float: 'right' }} to="">
+              <Link style={{ float: 'right' }} to="/forgotpassword">
                 Forgot password?
               </Link>
             </Form.Item>

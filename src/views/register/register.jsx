@@ -4,7 +4,22 @@ import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 class Register extends Component {
-  state = {};
+  state = { error: '' };
+  clearErrorState = () => {
+    this.setState({ error: '' });
+  };
+  handleFinish = (value) => {
+    this.clearErrorState();
+
+    try {
+      // AWS calling
+      console.log(value);
+    } catch (error) {
+      let err = null;
+      !error.message ? (err = { message: error }) : (err = error);
+      this.setState({ error: err });
+    }
+  };
   render() {
     return (
       <Card style={{ paddingLeft: '5%' }}>
@@ -14,7 +29,7 @@ class Register extends Component {
           </Typography.Text>
         </Row>
         <Row>
-          <Form>
+          <Form onFinish={this.handleFinish}>
             <Form.Item
               name="username"
               rules={[
@@ -28,7 +43,6 @@ class Register extends Component {
             </Form.Item>
             <Form.Item
               name="email"
-              // label="E-mail"
               rules={[
                 {
                   type: 'email',
@@ -45,7 +59,6 @@ class Register extends Component {
 
             <Form.Item
               name="password"
-              // label="Password"
               rules={[
                 {
                   required: true,
@@ -62,7 +75,6 @@ class Register extends Component {
 
             <Form.Item
               name="confirm"
-              // label="Confirm Password"
               dependencies={['password']}
               hasFeedback
               rules={[
@@ -88,7 +100,7 @@ class Register extends Component {
               />
             </Form.Item>
             <Form.Item>
-              <Link style={{ float: 'left' }} to="">
+              <Link style={{ float: 'left' }} to="/forgotpassword">
                 Forgot password?
               </Link>
             </Form.Item>
