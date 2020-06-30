@@ -82,7 +82,7 @@ class Login extends Component {
               >
                 Log in
               </Button>
-              Or <Link to="">register now!</Link>
+              Or <Link to="/register">register now!</Link>
             </Form.Item>
           </Form>
         </Row>

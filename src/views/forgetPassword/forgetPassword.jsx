@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Row, Typography, Form, Input, Button } from 'antd';
+import { Card, Row, Typography, Form, Input, Button, Alert } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
 
 class ForgetPassword extends Component {
@@ -8,10 +8,11 @@ class ForgetPassword extends Component {
   clearErrorState = () => {
     this.setState({ error: '' });
   };
-  handleFinish = () => {
+  handleFinish = (value) => {
     this.clearErrorState();
     try {
       //AWS calling
+      console.log(value);
       this.props.history.push('/fpverification');
     } catch (error) {
       let err = null;
@@ -35,6 +36,11 @@ class ForgetPassword extends Component {
         </Row>
         <Row>
           <Form onFinish={this.handleFinish}>
+            {this.state.error !== '' ? (
+              <Form.Item>
+                <Alert message={this.state.error} type="error" showIcon />
+              </Form.Item>
+            ) : null}
             <Form.Item
               name="email"
               rules={[

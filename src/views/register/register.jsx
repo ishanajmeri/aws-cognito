@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Form, Input, Row, Typography, Button } from 'antd';
+import { Card, Form, Input, Row, Typography, Button, Alert } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
@@ -32,6 +32,11 @@ class Register extends Component {
         </Row>
         <Row>
           <Form onFinish={this.handleFinish}>
+            {this.state.error !== '' ? (
+              <Form.Item>
+                <Alert message={this.state.error} type="error" showIcon />
+              </Form.Item>
+            ) : null}
             <Form.Item
               name="username"
               rules={[

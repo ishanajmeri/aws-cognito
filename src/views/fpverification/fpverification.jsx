@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
-import { Card, Row, Typography, Form, Input, Button } from 'antd';
+import { Card, Row, Typography, Form, Input, Button, Alert } from 'antd';
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 
 class FPVerification extends Component {
-  state = {};
+  state = { error: '' };
+  clearErrorState = () => {
+    this.setState({
+      error: '',
+    });
+  };
+  handleFinish = (value) => {
+    this.clearErrorState();
+    try {
+      console.log(value, 'value ');
+      //AWS cognito calling
+      throw new Error();
+    } catch (error) {
+      let err = null;
+      !error.message ? (err = { message: error }) : (err = error);
+      this.setState({ error: err });
+    }
+  };
   render() {
     return (
       <Card style={{ paddingLeft: '5%' }}>
@@ -19,7 +36,12 @@ class FPVerification extends Component {
           </Typography.Text>
         </Row>
         <Row>
-          <Form>
+          <Form onFinish={this.handleFinish}>
+            {this.state.error !== '' ? (
+              <Form.Item>
+                <Alert message={this.state.error} type="error" showIcon />
+              </Form.Item>
+            ) : null}
             <Form.Item
               name="verification code"
               rules={[
