@@ -8,13 +8,8 @@ import Login from '../views/login/login';
 const Routes = () => {
   return (
     <Switch>
-      <Redirect exact from="/" to="/home" />
-      <RouteWithLayout
-        component={Home}
-        exact
-        layout={MainLayout}
-        path="/home"
-      />
+      {/* <Redirect exact from="/" to="/home" /> */}
+      <RouteWithLayout component={Home} exact layout={MainLayout} path="/" />
       <RouteWithLayout
         component={Login}
         exact
