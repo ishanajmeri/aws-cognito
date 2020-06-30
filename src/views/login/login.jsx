@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
-import { Card, Form, Row, Input, Button } from 'antd';
+import { Card, Form, Row, Input, Button, Alert } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 class Login extends Component {
-  state = {};
+  state = {
+    error: '',
+  };
+  handleFinish = (value) => {
+    try {
+      //AWS cognito calling
+      throw new Error();
+    } catch (error) {
+      let err = null;
+      !error.message ? (err = { message: error }) : (err = error);
+      this.setState({ error: err });
+    }
+  };
   render() {
     return (
       <Card>
@@ -12,8 +24,13 @@ class Login extends Component {
           <Form
             name="normal_login"
             style={{ maxWidth: '500px' }}
-            // onFinish={onFinish}
+            onFinish={this.handleFinish}
           >
+            {this.state.error !== '' ? (
+              <Form.Item>
+                <Alert message={this.state.error} type="error" showIcon />
+              </Form.Item>
+            ) : null}
             <Form.Item
               name="username"
               rules={[
