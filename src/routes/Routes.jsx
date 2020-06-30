@@ -7,6 +7,7 @@ import Login from '../views/login/login';
 import Register from '../views/register/register';
 import ForgetPassword from '../views/forgetPassword/forgetPassword';
 import FPVerification from '../views/fpverification/fpverification';
+import Welcome from '../views/welcome/welcome';
 
 const Routes = () => {
   return (
@@ -35,6 +36,12 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/fpverification"
+      />
+      <RouteWithLayout
+        component={Welcome}
+        exact
+        layout={MainLayout}
+        path="/welcome"
       />
     </Switch>
   );

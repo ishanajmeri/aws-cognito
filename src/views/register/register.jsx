@@ -13,7 +13,9 @@ class Register extends Component {
 
     try {
       // AWS calling
+
       console.log(value);
+      this.props.history.push('/welcome');
     } catch (error) {
       let err = null;
       !error.message ? (err = { message: error }) : (err = error);
@@ -64,6 +66,7 @@ class Register extends Component {
                   required: true,
                   message: 'Please input your password!',
                 },
+                { min: 6, message: 'At least has 6 letters.' },
               ]}
               hasFeedback
             >
@@ -82,6 +85,7 @@ class Register extends Component {
                   required: true,
                   message: 'Please confirm your password!',
                 },
+                { min: 6, message: 'At least has 6 letters.' },
                 ({ getFieldValue }) => ({
                   validator(rule, value) {
                     if (!value || getFieldValue('password') === value) {

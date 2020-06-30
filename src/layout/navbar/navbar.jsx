@@ -12,7 +12,7 @@ class Navbar extends Component {
     return (
       <Layout.Header>
         <Row>
-          <Col xs={19} md={19} lg={19}>
+          <Col xs={9} sm={17} md={18} lg={19}>
             <NavLink to="/">
               <img src="favicon.ico" alt="" style={{ height: '30%' }} />
             </NavLink>
@@ -20,7 +20,7 @@ class Navbar extends Component {
               <NavLink to="/">Home</NavLink>
             </Button>
           </Col>
-          <Col xs={5} md={5} lg={5}>
+          <Col xs={15} sm={7} md={6} lg={5}>
             <Button type="primary">
               <Link to="/register">Register</Link>
             </Button>
