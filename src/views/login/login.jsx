@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Form, Row, Input, Button, Alert } from 'antd';
+import { Card, Form, Row, Input, Button, Alert, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
@@ -7,8 +7,15 @@ class Login extends Component {
   state = {
     error: '',
   };
+  clearErrorState = () => {
+    this.setState({
+      error: '',
+    });
+  };
   handleFinish = (value) => {
+    this.clearErrorState();
     try {
+      console.log(value, 'value login');
       //AWS cognito calling
       throw new Error();
     } catch (error) {
@@ -20,6 +27,11 @@ class Login extends Component {
   render() {
     return (
       <Card>
+        <Row justify="center" style={{ paddingBottom: '1%' }}>
+          <Typography.Text underline strong style={{ fontSize: '22px' }}>
+            Login
+          </Typography.Text>
+        </Row>
         <Row justify="center">
           <Form
             name="normal_login"
