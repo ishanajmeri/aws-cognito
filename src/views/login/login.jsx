@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Form, Row, Input, Button, Alert, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { Auth } from 'aws-amplify';
 
 class Login extends Component {
   state = {
@@ -12,12 +13,16 @@ class Login extends Component {
       error: '',
     });
   };
-  handleFinish = (value) => {
+  handleFinish = async (value) => {
     this.clearErrorState();
+    const { username, password } = value;
     try {
-      console.log(value, 'value login');
       //AWS cognito calling
-      throw new Error();
+      const user = await Auth.signIn(username, password);
+      this.props.auth.setAuthStatus(true);
+      this.props.auth.setUser(user);
+      console.log(user);
+      this.props.history.push('/');
     } catch (error) {
       let err = null;
       !error.message ? (err = { message: error }) : (err = error);

@@ -3,13 +3,14 @@ import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const RouteWithLayout = (props) => {
-  const { layout: Layout, component: Component, ...rest } = props;
+  const { layout: Layout, component: Component, auth, ...rest } = props;
+  // console.log(props);
   return (
     <Route
       {...rest}
       render={(matchProps) => (
-        <Layout>
-          <Component {...matchProps} />
+        <Layout auth={auth}>
+          <Component {...matchProps} auth={auth} />
         </Layout>
       )}
     />

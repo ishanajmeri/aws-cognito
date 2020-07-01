@@ -2,20 +2,29 @@ import React, { Component } from 'react';
 import { Card, Form, Input, Row, Typography, Button, Alert } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { Auth } from 'aws-amplify';
 
 class Register extends Component {
   state = { error: '' };
+
   clearErrorState = () => {
     this.setState({ error: '' });
   };
-  handleFinish = (value) => {
-    this.clearErrorState();
 
+  handleFinish = async (value) => {
+    this.clearErrorState();
+    const { username, email, password } = value;
     try {
       // AWS calling
-
-      console.log(value);
-      this.props.history.push('/welcome');
+      const signUpResponse = await Auth.signUp({
+        username,
+        password,
+        attributes: {
+          email: email,
+        },
+      });
+      console.log(signUpResponse);
+      // this.props.history.push('/welcome');
     } catch (error) {
       let err = null;
       !error.message ? (err = { message: error }) : (err = error);
@@ -90,7 +99,7 @@ class Register extends Component {
                   required: true,
                   message: 'Please confirm your password!',
                 },
-                { min: 6, message: 'At least has 6 letters.' },
+                { min: 8, message: 'At least has 8 letters.' },
                 ({ getFieldValue }) => ({
                   validator(rule, value) {
                     if (!value || getFieldValue('password') === value) {

@@ -9,32 +9,42 @@ import ForgetPassword from '../views/forgetPassword/forgetPassword';
 import FPVerification from '../views/fpverification/fpverification';
 import Welcome from '../views/welcome/welcome';
 
-const Routes = () => {
+const Routes = (props) => {
   return (
     <Switch>
-      <RouteWithLayout component={Home} exact layout={MainLayout} path="/" />
+      <RouteWithLayout
+        component={Home}
+        exact
+        layout={MainLayout}
+        auth={props.auth}
+        path="/"
+      />
       <RouteWithLayout
         component={Login}
         exact
         layout={MainLayout}
+        auth={props.auth}
         path="/login"
       />
       <RouteWithLayout
         component={Register}
         exact
         layout={MainLayout}
+        auth={props.auth}
         path="/register"
       />
       <RouteWithLayout
         component={ForgetPassword}
         exact
         layout={MainLayout}
+        auth={props.auth}
         path="/forgotpassword"
       />
       <RouteWithLayout
         component={FPVerification}
         exact
         layout={MainLayout}
+        auth={props.auth}
         path="/fpverification"
       />
       <RouteWithLayout
