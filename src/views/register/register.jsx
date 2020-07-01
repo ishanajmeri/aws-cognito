@@ -71,7 +71,7 @@ class Register extends Component {
                   required: true,
                   message: 'Please input your password!',
                 },
-                { min: 6, message: 'At least has 6 letters.' },
+                { min: 8, message: 'At least has 8 letters.' },
               ]}
               hasFeedback
             >
