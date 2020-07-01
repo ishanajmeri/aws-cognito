@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Row, Typography, Form, Input, Button, Alert } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
+import { Auth } from 'aws-amplify';
 
 class ForgetPassword extends Component {
   state = { error: '' };
@@ -8,11 +9,12 @@ class ForgetPassword extends Component {
   clearErrorState = () => {
     this.setState({ error: '' });
   };
-  handleFinish = (value) => {
+  handleFinish = async (value) => {
     this.clearErrorState();
     try {
       //AWS calling
-      console.log(value);
+      await Auth.forgotPassword(value.email);
+      // console.log(value);
       this.props.history.push('/fpverification');
     } catch (error) {
       let err = null;
@@ -58,7 +60,7 @@ class ForgetPassword extends Component {
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">
-                Register
+                Submit
               </Button>
             </Form.Item>
           </Form>

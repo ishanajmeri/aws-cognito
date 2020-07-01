@@ -8,6 +8,7 @@ import Register from '../views/register/register';
 import ForgetPassword from '../views/forgetPassword/forgetPassword';
 import FPVerification from '../views/fpverification/fpverification';
 import Welcome from '../views/welcome/welcome';
+import ChangePasswordConfirm from '../views/changepasswordconfirm/changepasswordconfirm';
 
 const Routes = (props) => {
   return (
@@ -52,6 +53,12 @@ const Routes = (props) => {
         exact
         layout={MainLayout}
         path="/welcome"
+      />
+      <RouteWithLayout
+        component={ChangePasswordConfirm}
+        exact
+        layout={MainLayout}
+        path="/changepasswordconfirmation"
       />
     </Switch>
   );

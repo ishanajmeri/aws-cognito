@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Row, Typography, Form, Input, Button, Alert } from 'antd';
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { Auth } from 'aws-amplify';
 
 class FPVerification extends Component {
   state = { error: '' };
@@ -9,12 +10,17 @@ class FPVerification extends Component {
       error: '',
     });
   };
-  handleFinish = (value) => {
+  handleFinish = async (value) => {
     this.clearErrorState();
+    console.log(value, 'value ');
     try {
-      console.log(value, 'value ');
       //AWS cognito calling
-      throw new Error();
+      await Auth.forgotPasswordSubmit(
+        value.email,
+        value.verificationcode,
+        value.password
+      );
+      this.props.history.push('/changepasswordconfirmation');
     } catch (error) {
       let err = null;
       !error.message ? (err = { message: error }) : (err = error);
@@ -43,7 +49,7 @@ class FPVerification extends Component {
               </Form.Item>
             ) : null}
             <Form.Item
-              name="verification code"
+              name="verificationcode"
               rules={[
                 {
                   required: true,
@@ -85,7 +91,7 @@ class FPVerification extends Component {
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">
-                Register
+                Submit
               </Button>
             </Form.Item>
           </Form>
