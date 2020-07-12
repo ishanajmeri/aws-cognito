@@ -1,24 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React-AWS-Cognito-authentication
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- uses:
+  - only React(create-react-app)
+  - aws-amplify
+  - ant-design
+- features:
+  - Sign In
+  - Sign up
+  - Sign out
+  - Password forget
+  - Password verification
+  - Protected Routes with Authorization
 
-### `yarn start`
+## Installation
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- `git clone git@github.com:ishanajmeri/aws-cognito.git`
+- `cd aws-cognito`
+- `npm install`
+- `npm start`
+- visit http://localhost:3000
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## AWS-Cognito Configuration
 
-### `yarn test`
+- In `config.json` add the details about the aws user pool.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
+{
+  "cognito": {
+    "REGION": "",
+    "USER_POOL_ID": "",
+    "APP_CLIENT_ID": ""
+  }
+}
 
-## how to implement
-
-1. Clone the Repo.
-2. In `config.json` add the details about the aws user pool.
-3. Run by `yarn start` or `npm start`.
+```
